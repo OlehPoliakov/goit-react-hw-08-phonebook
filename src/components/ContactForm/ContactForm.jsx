@@ -1,63 +1,55 @@
-import React from 'react';
 import { nanoid } from 'nanoid';
+import { Formik, ErrorMessage } from 'formik';
+import * as yup from 'yup';
+import {
+  FormContact,
+  Input,
+  Label,
+  ErrorText,
+  Btn,
+} from './ContactForm.styled';
 
-export default class ContactForm extends React.Component {
-  state = {
-    name: '',
-    number: '',
+const schema = yup.object().shape({
+  name: yup.string().max(15).required(),
+  number: yup.string().min(5).required(),
+});
+
+const initialValues = {
+  name: '',
+  number: '',
+};
+
+export default function ContactForm({ onSubmit }) {
+  const handleSubmit = (values, { resetForm }) => {
+    onSubmit(values);
+    resetForm();
   };
 
-  nameInputId = nanoid();
-  numberInputId = nanoid();
-
-  handleChange = e => {
-    const { name, value } = e.currentTarget;
-
-    this.setState({ [name]: value });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.onSubmit(this.state);
-    this.reset();
-  };
-
-  reset = () => {
-    this.setState({ name: '', number: '' });
-  };
-
-  render() {
-    const { name, number } = this.state;
-
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor={this.nameInputId}>
+  return (
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      validationSchema={schema}
+    >
+      <FormContact autoComplete="off">
+        <Label>
           Name
-          <input
-            type="text"
+          <Input type="text" name="name" id={nanoid()} />
+          <ErrorMessage
             name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            value={name}
-            onChange={this.handleChange}
-            id={this.nameInputId}
-            required
+            render={message => <ErrorText>{message}</ErrorText>}
           />
-        </label>
-        <label htmlFor={this.numberInputId}>
+        </Label>
+        <Label>
           Number
-          <input
-            type="tel"
+          <Input type="tel" name="number" id={nanoid()} />
+          <ErrorMessage
             name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            value={number}
-            onChange={this.handleChange}
-            id={this.numberInputId}
-            required
+            render={message => <ErrorText>{message}</ErrorText>}
           />
-        </label>
-        <button type="submit">Add contact</button>
-      </form>
-    );
-  }
+        </Label>
+        <Btn type="submit">Add contact</Btn>
+      </FormContact>
+    </Formik>
+  );
 }

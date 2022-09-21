@@ -6,8 +6,8 @@ export default function SectionTitle({ title, children, ContactsLength }) {
     <Section>
       {title && (
         <Title>
+          <Length>{ContactsLength} </Length>
           {title}
-          <Length>{ContactsLength}</Length>
         </Title>
       )}
       {children}

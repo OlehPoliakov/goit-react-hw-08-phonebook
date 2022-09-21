@@ -7,11 +7,11 @@ import SectionTitle from './SectionTitle/SectionTitle';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
-import initialContacts from './data/contacts.json';
+import baseContacts from './db/contacts.json';
 
 export class App extends React.Component {
   state = {
-    contacts: initialContacts,
+    contacts: baseContacts,
     filter: '',
   };
 
@@ -26,7 +26,7 @@ export class App extends React.Component {
     const newContact = { id: nanoid(), name, number };
 
     contacts.some(contact => contact.name === name)
-      ? Report.warning(
+      ? Report.info(
           `${name}`,
           'This user is already in the contact list.',
           'OK'
@@ -40,7 +40,7 @@ export class App extends React.Component {
     this.setState({ filter: e.currentTarget.value });
   };
 
-  getFilterContacts = () => {
+  filterContacts = () => {
     const { filter, contacts } = this.state;
 
     const normalizedFilter = filter.toLowerCase();
@@ -63,11 +63,11 @@ export class App extends React.Component {
           </Box>
 
           <Box>
-            <SectionTitle title="Contacts" ContactsLength={contacts.length}>
+            <SectionTitle ContactsLength={contacts.length} title="Contacts">
               <Box>
                 <Filter value={filter} onChange={this.changeFilter} />
                 <ContactList
-                  contacts={this.getFilterContacts()}
+                  contacts={this.filterContacts()}
                   ondDeleteContact={this.deleteContact}
                 />
               </Box>
