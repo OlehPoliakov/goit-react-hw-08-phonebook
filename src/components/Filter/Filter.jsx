@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 // import {} from './Filter.styled.jsx';
 
 export default function Filter({ value, onChange }) {
