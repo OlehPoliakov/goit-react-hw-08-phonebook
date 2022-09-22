@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Section, Title, Length, Message } from './SectionTitle.styled.jsx';
+import { Section, Title } from './SectionTitle.styled.jsx';
 
 export default function SectionTitle({ title, children }) {
   return (

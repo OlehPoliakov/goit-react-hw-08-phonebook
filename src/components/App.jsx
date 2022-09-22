@@ -9,7 +9,6 @@ import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 import Message from './Message/Message';
 import baseContacts from './db/contacts.json';
-import { flex } from 'styled-system';
 
 export class App extends React.Component {
   state = {
