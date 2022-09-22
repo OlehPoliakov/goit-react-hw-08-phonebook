@@ -81,6 +81,3 @@ export class App extends React.Component {
     );
   }
 }
-{
-  /* <SectionTitle contactsLength={contacts.length} title="Contacts" />; */
-}
