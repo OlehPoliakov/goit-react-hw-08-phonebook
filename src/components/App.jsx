@@ -7,7 +7,9 @@ import SectionTitle from './SectionTitle/SectionTitle';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
+import Message from './Message/Message';
 import baseContacts from './db/contacts.json';
+import { flex } from 'styled-system';
 
 export class App extends React.Component {
   state = {
@@ -57,24 +59,29 @@ export class App extends React.Component {
       <Container>
         <Box>
           <Box>
-            <SectionTitle title="Phonebook">
-              <ContactForm onSubmit={this.addContact} />
-            </SectionTitle>
+            <SectionTitle title="Phonebook" />
+            <ContactForm onSubmit={this.addContact} />
           </Box>
 
           <Box>
-            <SectionTitle ContactsLength={contacts.length} title="Contacts">
-              <Box>
-                <Filter value={filter} onChange={this.changeFilter} />
-                <ContactList
-                  contacts={this.filterContacts()}
-                  ondDeleteContact={this.deleteContact}
-                />
-              </Box>
-            </SectionTitle>
+            <Box>
+              <SectionTitle title="Contacts" />
+              <Filter value={filter} onChange={this.changeFilter} />
+            </Box>
+            {contacts.length > 0 ? (
+              <ContactList
+                contacts={this.filterContacts()}
+                ondDeleteContact={this.deleteContact}
+              />
+            ) : (
+              <Message text="Your phonebook is empty. Please add contact." />
+            )}
           </Box>
         </Box>
       </Container>
     );
   }
+}
+{
+  /* <SectionTitle contactsLength={contacts.length} title="Contacts" />; */
 }

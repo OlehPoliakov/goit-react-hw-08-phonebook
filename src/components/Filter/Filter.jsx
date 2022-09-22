@@ -1,11 +1,16 @@
-// import PropTypes from 'prop-types';
-// import {} from './Filter.styled.jsx';
+import PropTypes from 'prop-types';
+import { Label, Input } from './Filter.styled.jsx';
 
 export default function Filter({ value, onChange }) {
   return (
-    <label>
+    <Label>
       Filter Find contacts by name
-      <input type="text" value={value} onChange={onChange} />
-    </label>
+      <Input type="text" value={value} onChange={onChange} />
+    </Label>
   );
 }
+
+Filter.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};

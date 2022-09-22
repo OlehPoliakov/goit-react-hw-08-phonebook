@@ -1,19 +1,26 @@
 export const theme = Object.freeze({
   colors: {
-    white: '#ffffff',
-    black: '#000000',
-    primery: '#010101',
-    secondary: '#808080',
-    border: '#dddddd',
-    background: '#f1f1f1',
-    hover: 'turquoise',
+    primary: '#212121',
+    title: '#757575',
+    white: '#FFFFFF',
+    grey: '#F5F4FA',
+    icon: '#AFB1B8',
+    background: 'rgba(255, 255, 255, 0.6)',
+    hover: 'green',
+    error: 'red',
+    contacts: 'blue',
   },
 
   spacing: value => `${2 * value}px`,
 
   fonts: {
-    body: 'system-ui, sans-serif',
-    heading: 'system-ui, sans-serif',
+    body: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+    heading: 'Georgia, serif',
+    monospace: 'Menlo, monospace',
+  },
+
+  transition: {
+    transition: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
   },
 
   fontSizes: {
@@ -29,6 +36,16 @@ export const theme = Object.freeze({
     bold: 700,
   },
 
+  lineHeights: {
+    body: 1.5,
+    heading: 1.125,
+  },
+
+  letterSpacings: {
+    body: 'normal',
+    caps: '0.1em',
+  },
+
   borders: {
     none: 'none',
     normal: '1px solid',
@@ -40,3 +57,5 @@ export const theme = Object.freeze({
     round: '50%',
   },
 });
+
+// ${p => p.theme.colors.secondary}

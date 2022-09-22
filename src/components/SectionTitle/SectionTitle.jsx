@@ -1,15 +1,10 @@
 import PropTypes from 'prop-types';
-import { Section, Title, Length } from './SectionTitle.styled.jsx';
+import { Section, Title, Length, Message } from './SectionTitle.styled.jsx';
 
-export default function SectionTitle({ title, children, ContactsLength }) {
+export default function SectionTitle({ title, children }) {
   return (
     <Section>
-      {title && (
-        <Title>
-          <Length>{ContactsLength} </Length>
-          {title}
-        </Title>
-      )}
+      {title && <Title>{title}</Title>}
       {children}
     </Section>
   );
@@ -17,5 +12,5 @@ export default function SectionTitle({ title, children, ContactsLength }) {
 
 SectionTitle.propTypes = {
   title: PropTypes.string,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.element,
 };
