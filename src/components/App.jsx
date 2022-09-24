@@ -8,7 +8,7 @@ import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 import Message from './Message/Message';
-import baseContacts from './db/contacts.json';
+import baseContacts from '../db/contacts.json';
 
 export class App extends React.Component {
   state = {
