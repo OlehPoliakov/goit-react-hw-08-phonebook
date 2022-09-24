@@ -15,13 +15,13 @@ export class App extends React.Component {
     contacts: baseContacts,
     filter: '',
   };
-
+  // Удаляем контакт
   deleteContact = contactId => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
   };
-
+  // Добавляем контакт
   addContact = ({ name, number }) => {
     const { contacts } = this.state;
     const newContact = { id: nanoid(), name, number };
@@ -40,7 +40,7 @@ export class App extends React.Component {
   changeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
   };
-
+  // Фильтр контактов
   filterContacts = () => {
     const { filter, contacts } = this.state;
 
@@ -50,6 +50,21 @@ export class App extends React.Component {
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
+
+  // Запись в LocalStorage контакты
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+  // Достаем из LocalStorage контакты и записываем в State
+  componentDidMount() {
+    const parseContacts = JSON.parse(localStorage.getItem('contacts'));
+
+    if (parseContacts) {
+      this.setState({ contacts: parseContacts });
+    }
+  }
 
   render() {
     const { contacts, filter } = this.state;
