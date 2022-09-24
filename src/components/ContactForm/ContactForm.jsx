@@ -11,8 +11,8 @@ import {
 } from './ContactForm.styled.jsx';
 
 const schema = yup.object().shape({
-  name: yup.string().min(3).max(20).required(),
-  number: yup.number().min(3).required(),
+  name: yup.string().min(3).max(15).required(),
+  number: yup.string().min(3).max(12),
 });
 
 const initialValues = {
@@ -36,10 +36,11 @@ export default function ContactForm({ onSubmit }) {
         <Label>
           Name
           <Input
+            id={nanoid()}
             type="text"
             name="name"
             placeholder="Volodymyr Zelenskyy"
-            id={nanoid()}
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           />
           <ErrorMessage
             name="name"
@@ -48,7 +49,13 @@ export default function ContactForm({ onSubmit }) {
         </Label>
         <Label>
           Number
-          <Input type="tel" name="number" placeholder="911" id={nanoid()} />
+          <Input
+            id={nanoid()}
+            type="tel"
+            name="number"
+            placeholder="937-99-92"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          />
           <ErrorMessage
             name="number"
             render={message => <ErrorText>{message}</ErrorText>}

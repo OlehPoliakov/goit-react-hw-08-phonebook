@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
-import { FaTrashAlt, FaUserAlt } from 'react-icons/fa';
+import { ReactComponent as AddContact } from '../../icons/contact.svg';
+import { ReactComponent as DeleteContact } from '../../icons/delete.svg';
 import {
   List,
   Item,
   Name,
   Number,
   Delete,
-  Icon,
+  Add,
   Wraper,
 } from './ContactList.styled.jsx';
 
@@ -16,15 +17,18 @@ export default function ContactList({ contacts, ondDeleteContact }) {
       {contacts.map(({ id, name, number }) => (
         <Item key={id}>
           <Wraper>
-            <Icon>
-              <FaUserAlt />
-            </Icon>
+            <Add>
+              <AddContact width="40" height="40" fill="#222024a1" />
+            </Add>
+
             <Name>{name}:</Name>
           </Wraper>
+
           <Wraper>
             <Number>{number}</Number>
+
             <Delete type="button" onClick={() => ondDeleteContact(id)}>
-              <FaTrashAlt />
+              <DeleteContact width="20" height="20" fill="#ff0000aa" />
             </Delete>
           </Wraper>
         </Item>

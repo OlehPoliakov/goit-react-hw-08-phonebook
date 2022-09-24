@@ -68,29 +68,23 @@ export class App extends React.Component {
 
   render() {
     const { contacts, filter } = this.state;
-
     return (
       <Container>
         <Box>
-          <Box>
-            <SectionTitle title="Phonebook" />
-            <ContactForm onSubmit={this.addContact} />
-          </Box>
-
-          <Box>
-            <Box>
-              <SectionTitle title="Contacts" />
-              <Filter value={filter} onChange={this.changeFilter} />
-            </Box>
-            {contacts.length > 0 ? (
-              <ContactList
-                contacts={this.filterContacts()}
-                ondDeleteContact={this.deleteContact}
-              />
-            ) : (
-              <Message text="Your phonebook is empty. Please add contact." />
-            )}
-          </Box>
+          <SectionTitle title="Phonebook" />
+          <ContactForm onSubmit={this.addContact} />
+        </Box>
+        <Box>
+          <SectionTitle title="Contacts" />
+          <Filter value={filter} onChange={this.changeFilter} />
+          {contacts.length > 0 ? (
+            <ContactList
+              contacts={this.filterContacts()}
+              ondDeleteContact={this.deleteContact}
+            />
+          ) : (
+            <Message text="Your phonebook is empty. Please add contact." />
+          )}
         </Box>
       </Container>
     );
