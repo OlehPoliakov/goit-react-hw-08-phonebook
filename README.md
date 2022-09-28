@@ -1,4 +1,4 @@
-## Phone book
+## Phone book (React hooks)
 
 Take your solution from the previous homework and add the storage of the
 phonebook contacts to localStorage. Use lifecycle methods.
