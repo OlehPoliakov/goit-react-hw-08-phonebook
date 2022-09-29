@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import { Box } from './Box';
 import { nanoid } from 'nanoid';
 import { Report } from 'notiflix/build/notiflix-report-aio';
@@ -10,20 +11,19 @@ import Filter from './Filter/Filter';
 import Message from './Message/Message';
 import baseContacts from '../db/contacts.json';
 
-export class App extends React.Component {
-  state = {
-    contacts: baseContacts,
-    filter: '',
-  };
-  // Удаляем контакт
-  deleteContact = contactId => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
-    }));
-  };
+export default function App() {
+  const [contacts, setContacts] = useState(
+    () => JSON.parse(localStorage.getItem('contacts')) || baseContacts
+  );
+  const [filter, setFilter] = useState('');
+
+  // Запись в LocalStorage контакты
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
+
   // Добавляем контакт
-  addContact = ({ name, number }) => {
-    const { contacts } = this.state;
+  const addContact = ({ name, number }) => {
     const newContact = { id: nanoid(), name, number };
 
     contacts.some(contact => contact.name === name)
@@ -32,18 +32,21 @@ export class App extends React.Component {
           'This user is already in the contact list.',
           'OK'
         )
-      : this.setState(({ contacts }) => ({
-          contacts: [newContact, ...contacts],
-        }));
+      : setContacts(prevContacts => [newContact, ...prevContacts]);
   };
 
-  changeFilter = e => {
-    this.setState({ filter: e.currentTarget.value });
+  // Удаляем контакт
+  const deleteContact = contactId => {
+    setContacts(prevContacts =>
+      prevContacts.filter(contact => contact.id !== contactId)
+    );
   };
+
   // Фильтр контактов
-  filterContacts = () => {
-    const { filter, contacts } = this.state;
 
+  const changeFilter = e => setFilter(e.currentTarget.value);
+
+  const filterContacts = () => {
     const normalizedFilter = filter.toLowerCase();
 
     return contacts.filter(contact =>
@@ -51,42 +54,24 @@ export class App extends React.Component {
     );
   };
 
-  // Запись в LocalStorage контакты
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  }
-  // Достаем из LocalStorage контакты и записываем в State
-  componentDidMount() {
-    const parseContacts = JSON.parse(localStorage.getItem('contacts'));
-
-    if (parseContacts) {
-      this.setState({ contacts: parseContacts });
-    }
-  }
-
-  render() {
-    const { contacts, filter } = this.state;
-    return (
-      <Container>
-        <Box>
-          <SectionTitle title="Phonebook" />
-          <ContactForm onSubmit={this.addContact} />
-        </Box>
-        <Box>
-          <SectionTitle title="Contacts" />
-          <Filter value={filter} onChange={this.changeFilter} />
-          {contacts.length > 0 ? (
-            <ContactList
-              contacts={this.filterContacts()}
-              ondDeleteContact={this.deleteContact}
-            />
-          ) : (
-            <Message text="Your phonebook is empty. Please add contact." />
-          )}
-        </Box>
-      </Container>
-    );
-  }
+  return (
+    <Container>
+      <Box>
+        <SectionTitle title="Phonebook" />
+        <ContactForm onSubmit={addContact} />
+      </Box>
+      <Box>
+        <SectionTitle title="Contacts" />
+        <Filter value={filter} onChange={changeFilter} />
+        {contacts.length > 0 ? (
+          <ContactList
+            contacts={filterContacts()}
+            ondDeleteContact={deleteContact}
+          />
+        ) : (
+          <Message text="Your phonebook is empty. Please add contact." />
+        )}
+      </Box>
+    </Container>
+  );
 }
