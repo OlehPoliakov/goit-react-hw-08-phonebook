@@ -11,16 +11,30 @@ import Filter from './Filter/Filter';
 import Message from './Message/Message';
 import baseContacts from '../db/contacts.json';
 
-export default function App() {
-  const [contacts, setContacts] = useState(
-    () => JSON.parse(localStorage.getItem('contacts')) || baseContacts
+// Hook LocalStorage
+const useLocalStorage = (key, defaultValue) => {
+  const [state, setState] = useState(
+    () => JSON.parse(window.localStorage.getItem(key)) ?? defaultValue
   );
+
+  useEffect(() => {
+    window.localStorage.setItem(key, JSON.stringify(state));
+  }, [key, state]);
+
+  return [state, setState];
+};
+
+export default function App() {
+  // const [contacts, setContacts] = useState(
+  //   () => JSON.parse(localStorage.getItem('contacts')) ?? baseContacts
+  // );
+  const [contacts, setContacts] = useLocalStorage('contacts', baseContacts);
   const [filter, setFilter] = useState('');
 
   // Запись в LocalStorage контакты
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  // useEffect(() => {
+  //   localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
 
   // Добавляем контакт
   const addContact = ({ name, number }) => {
@@ -43,8 +57,7 @@ export default function App() {
   };
 
   // Фильтр контактов
-
-  const changeFilter = e => setFilter(e.currentTarget.value);
+  const changeFilter = e => setFilter(e.target.value);
 
   const filterContacts = () => {
     const normalizedFilter = filter.toLowerCase();

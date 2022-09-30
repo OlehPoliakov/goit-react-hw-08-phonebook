@@ -32,7 +32,7 @@ export default function ContactForm({ onSubmit }) {
       onSubmit={handleSubmit}
       validationSchema={schema}
     >
-      <FormContact autoComplete="off">
+      <FormContact autoComplete="on">
         <Label>
           Name
           <Input
