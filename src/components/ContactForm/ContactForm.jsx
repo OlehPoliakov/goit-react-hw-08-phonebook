@@ -12,7 +12,7 @@ import {
 
 const schema = yup.object().shape({
   name: yup.string().min(3).max(15).required(),
-  number: yup.string().min(3).max(12),
+  number: yup.string().min(3).max(12).required(),
 });
 
 const initialValues = {
