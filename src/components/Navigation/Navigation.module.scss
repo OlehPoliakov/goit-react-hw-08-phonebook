@@ -1,0 +1,13 @@
+@import 'utils/variables.module.scss';
+
+.link {
+  display: inline-block;
+  padding: 20px 0;
+  font-weight: 700;
+  color: $main-text-color;
+  font-size: 20px;
+}
+
+.link:not(:last-child) {
+  margin-right: 30px;
+}

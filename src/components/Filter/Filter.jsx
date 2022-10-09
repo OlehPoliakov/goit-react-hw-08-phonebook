@@ -1,16 +1,22 @@
 import PropTypes from 'prop-types';
-import { Label, Input } from './Filter.styled.jsx';
+import styles from './Filter.module.scss';
 
-export default function Filter({ value, onChange }) {
+function Filter({ changeInput }) {
   return (
-    <Label>
-      Filter Find contacts by name
-      <Input type="text" value={value} onChange={onChange} />
-    </Label>
+    <label className={styles.Label}>
+      <input
+        className={styles.Input}
+        type="text"
+        name="filter"
+        onChange={changeInput}
+        placeholder="Filter Find contacts by name"
+      />
+    </label>
   );
 }
 
+export default Filter;
+
 Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  changeInput: PropTypes.func.isRequired,
 };

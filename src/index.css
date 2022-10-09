@@ -1,36 +1,28 @@
-@import-normalize; /* bring in normalize.css styles */
+@import-normalize;
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 
 body {
-  font-family: sans-serif;
-  line-height: 1.5;
-  background-image: url('./img/bg.jpg');
-  background-size: cover;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-label {
-  padding: 0;
   margin: 0;
+  padding: 0;
+
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+  color: #212121;
+
+  background-image: linear-gradient(
+      rgba(255, 249, 231, 0.7),
+      rgba(255, 249, 231, 0.7)
+    ),
+    url('./img/bg.jpg');
 }
 
-textarea {
-  resize: none;
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-ul,
-ol {
+ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -40,8 +32,17 @@ a {
   text-decoration: none;
 }
 
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.active {
+  color: red;
 }

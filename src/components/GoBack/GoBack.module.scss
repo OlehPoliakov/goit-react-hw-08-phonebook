@@ -1,0 +1,20 @@
+@import 'utils/variables.module.scss';
+
+.Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 30px;
+  padding: 10px 25px 10px 15px;
+  background-color: $second-bg-color;
+  color: $second-text-color;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: background-color $transition-duration;
+}
+
+.Label {
+  margin-left: 10px;
+}

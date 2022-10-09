@@ -1,9 +1,23 @@
-## Phone book (React hooks)
+# Phone book
 
-Take your solution from the previous homework and add the storage of the
-phonebook contacts to localStorage. Use lifecycle methods.
+Refactor the Phonebook application code to add a control state using the library
+[Redux Toolkit](https://redux-toolkit.js.org/).
 
-- When adding and deleting a contact, the contacts are saved to the local
-  storage.
-- When the app is loaded, contacts, if any, are read from local storage and
-  written to the state.
+Let the Redux state look like this.
+
+```bash
+{
+  contacts: {
+    items: [],
+    filter: ''
+  }
+}
+```
+
+- Create a vault with `configureStore()`
+- Create actions to save and delete a contact, as well as update the filter. use
+  the function `createAction()`.
+- Create contact and filter reducers. use the function `createReducer()` or
+  `createSlice()`.
+- Bind React Components to Redux Logic with Library Hooks
+  [react-redux](https://react-redux.js.org/).
