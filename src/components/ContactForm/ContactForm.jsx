@@ -1,26 +1,34 @@
-import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { BsFillPersonPlusFill } from 'react-icons/bs';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { nanoid } from 'nanoid';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Report } from 'notiflix';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import GoBack from 'components/GoBack';
-import { useNavigate } from 'react-router-dom';
+import { contactSchema } from 'utils/validationSchema';
+import {
+  useCreateContactMutation,
+  useGetContactsQuery,
+} from 'redux/contacts/api';
 import styles from './ContactForm.module.scss';
 
-export default function ContactForm({ submitForm, validationSchema }) {
-  const id = nanoid();
+export default function ContactForm() {
   const navigate = useNavigate();
 
-  const handleSubmit = ({ name, number }, { resetForm }) => {
-    const newContact = {
-      id,
-      name,
-      number,
-    };
-    submitForm(newContact);
-    resetForm();
+  const [createContact] = useCreateContactMutation();
+  const { data: contacts } = useGetContactsQuery();
 
+  const handleSubmit = ({ name, number }) => {
+    contacts.some(contact => contact.name === name)
+      ? Report.warning(
+          `${name}`,
+          'This user is already in the contact list.',
+          'OK'
+        )
+      : createContact({ name, number });
+
+    Notify.success(`The ${name} has been added to your contact list.`);
     navigate('/contacts');
   };
 
@@ -29,7 +37,7 @@ export default function ContactForm({ submitForm, validationSchema }) {
       <GoBack text="Contact list" path="/contacts" />
       <Formik
         initialValues={{ name: '', number: '' }}
-        validationSchema={validationSchema}
+        validationSchema={contactSchema}
         onSubmit={handleSubmit}
       >
         <Form className={styles.form}>
@@ -72,7 +80,3 @@ export default function ContactForm({ submitForm, validationSchema }) {
     </>
   );
 }
-
-ContactForm.propTypes = {
-  submitForm: PropTypes.func.isRequired,
-};

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { variants } from 'utils/motionVar';
 import { ReactComponent as AddContact } from 'img/icons/contact.svg';
-import { ReactComponent as DeleteContact } from 'img/icons/delete.svg';
+import DeletingContact from 'components/DeleteContact';
 import styles from './ContactItem.module.scss';
 
 const ContactItem = ({ id, name, number, deleteBtn }) => {
@@ -20,14 +20,7 @@ const ContactItem = ({ id, name, number, deleteBtn }) => {
         <b>{name}</b>
         <em>{number}</em>
       </p>
-      <button
-        className={styles.Delete}
-        type="button"
-        aria-label="delete"
-        onClick={() => deleteBtn(id)}
-      >
-        <DeleteContact width="22" height="22" fill="#222024a1" />
-      </button>
+      <DeletingContact id={id} name={name} />
     </motion.li>
   );
 };

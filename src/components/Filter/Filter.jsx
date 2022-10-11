@@ -1,7 +1,15 @@
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { changeFilter } from 'redux/contacts/slice';
 import styles from './Filter.module.scss';
 
-function Filter({ changeInput }) {
+function Filter() {
+  const dispatch = useDispatch();
+
+  const changeInput = e => {
+    const value = e.currentTarget.value;
+    dispatch(changeFilter(value));
+  };
+
   return (
     <label className={styles.Label}>
       <input
@@ -16,7 +24,3 @@ function Filter({ changeInput }) {
 }
 
 export default Filter;
-
-Filter.propTypes = {
-  changeInput: PropTypes.func.isRequired,
-};
