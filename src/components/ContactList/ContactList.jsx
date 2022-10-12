@@ -29,13 +29,7 @@ const ContactList = () => {
         {isFetching && <Loader />}
         {error && <NotFound data={error.data} status={error.status} />}
         {filteredContactList.map(({ id, name, number }) => {
-          return (
-            <ContactItem
-              id={id}
-              name={name}
-              number={number}
-            />
-          );
+          return <ContactItem key={id} id={id} name={name} number={number} />;
         })}
       </AnimatePresence>
     </motion.ul>

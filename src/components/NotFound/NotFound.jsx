@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styles from './NotFound.module.scss';
 
 function NotFound({ data, status }) {
@@ -16,9 +16,9 @@ function NotFound({ data, status }) {
   );
 }
 
-NotFound.prototype = {
-  data: propTypes.string,
-  status: propTypes.number,
+NotFound.propTypes = {
+  data: PropTypes.string,
+  status: PropTypes.number,
 };
 
 export default NotFound;

@@ -5,7 +5,7 @@ import { ReactComponent as AddContact } from 'img/icons/contact.svg';
 import DeletingContact from 'components/DeleteContact';
 import styles from './ContactItem.module.scss';
 
-const ContactItem = ({ id, name, number, deleteBtn }) => {
+const ContactItem = ({ id, name, number }) => {
   return (
     <motion.li
       className={styles.item}
@@ -26,9 +26,9 @@ const ContactItem = ({ id, name, number, deleteBtn }) => {
 };
 
 ContactItem.propTypes = {
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
-  deleteBtn: PropTypes.func.isRequired,
 };
 
 export default ContactItem;

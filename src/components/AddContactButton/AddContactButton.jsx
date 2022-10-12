@@ -1,4 +1,4 @@
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavLink } from 'react-router-dom';
@@ -16,8 +16,8 @@ function AddContactButton({ text }) {
   );
 }
 
-AddContactButton.prototype = {
-  text: propTypes.string,
+AddContactButton.propTypes = {
+  text: PropTypes.string,
 };
 
 export default AddContactButton;

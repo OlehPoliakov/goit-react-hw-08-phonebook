@@ -1,4 +1,4 @@
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaLongArrowAltLeft } from 'react-icons/fa';
@@ -17,9 +17,9 @@ function GoBack({ text, path }) {
   );
 }
 
-GoBack.prototype = {
-  label: propTypes.string,
-  path: propTypes.string,
+GoBack.propTypes = {
+  text: PropTypes.string,
+  path: PropTypes.string,
 };
 
 export default GoBack;
