@@ -6,7 +6,7 @@ import { BsFillPersonPlusFill } from 'react-icons/bs';
 
 function AddContactButton({ text }) {
   return (
-    <NavLink to="contacts-add">
+    <NavLink to="/contacts/add">
       <Button variant="outline-primary">
         <BsFillPersonPlusFill size={20} />
         <p>{text}</p>

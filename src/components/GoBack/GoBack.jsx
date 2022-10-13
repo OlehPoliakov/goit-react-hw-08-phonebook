@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaLongArrowAltLeft } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
 import styles from './GoBack.module.scss';
 
 function GoBack({ text, path }) {

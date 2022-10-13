@@ -1,17 +1,11 @@
 import PropTypes from 'prop-types';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { useDeleteContactMutation } from 'redux/contacts/api';
 import Loader from 'components/Loader';
 import { ReactComponent as DeleteContact } from 'img/icons/delete.svg';
 import styles from './DeleteContact.module.scss';
+import useDeletingContact from 'hooks/deletingContact';
 
 export default function DeletingContact({ id, name }) {
-  const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
-
-  const deleteSelectedContact = () => {
-    deleteContact(id);
-    Notify.success(`The ${name} has been removed from your contact list.`);
-  };
+  const { isDeleting, deleteSelectedContact } = useDeletingContact(id, name);
 
   return (
     <>

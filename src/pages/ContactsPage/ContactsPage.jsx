@@ -6,7 +6,7 @@ import { useGetContactsQuery } from 'redux/contacts/api';
 import styles from './ContactsPage.module.scss';
 
 export default function ContactsPage() {
-  const { data } = useGetContactsQuery();
+  const { data: contacts } = useGetContactsQuery();
 
   return (
     <div className={styles.wrapper}>
@@ -14,7 +14,7 @@ export default function ContactsPage() {
       <div className={styles.Formwrapper}>
         <Filter />
       </div>
-      {!data || data.length === 0 ? <Message /> : <ContactList />}
+      {contacts && contacts.length > 0 ? <ContactList /> : <Message />}
     </div>
   );
 }
