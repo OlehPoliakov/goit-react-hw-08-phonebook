@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import styles from './Logo.module.scss';
 
 function Logo() {
   return (
-    <Link to="/">
-      Phone<span>book</span>
-    </Link>
+    <NavLink className={styles.link} to="/">
+      Phone<span className={styles.logo}>book</span>
+    </NavLink>
   );
 }
 

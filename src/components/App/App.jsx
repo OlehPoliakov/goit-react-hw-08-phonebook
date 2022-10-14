@@ -3,25 +3,15 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Layout from 'components/Layout/Layout';
 import PublicRoute from 'components/PublicRoute';
 import PrivateRoute from 'components/PrivateRoute';
-// import AddContactPage from '../../pages/AddContactPage/AddContactPage';
 
-// const Home = lazy(() => import('pages/HomePage'));
-// const Contacts = lazy(() => import('pages/ContactsPage'));
-// const AddContactPage = lazy(() => import('pages/AddContactPage'));
-// const RegisterPage = lazy(() => import('pages/RegisterPage'));
-// const LoginPage = lazy(() => import('pages/LoginPage'));
 const HomePage = lazy(() =>
-  import('pages/HomePage/HomePage' /* webpackChunkName: "home-page" */)
+  import('pages/HomePage' /* webpackChunkName: "home-page" */)
 );
 const ContactsPage = lazy(() =>
-  import(
-    'pages/ContactsPage/ContactsPage' /* webpackChunkName: "contacts-page" */
-  )
+  import('pages/ContactsPage' /* webpackChunkName: "contacts-page" */)
 );
 const AddContactPage = lazy(() =>
-  import(
-    'pages/AddContactPage/AddContactPage' /* webpackChunkName: "addContact-page" */
-  )
+  import('pages/AddContactPage' /* webpackChunkName: "addContact-page" */)
 );
 const RegisterPage = lazy(() =>
   import('pages/RegisterPage' /* webpackChunkName: "register-page" */)

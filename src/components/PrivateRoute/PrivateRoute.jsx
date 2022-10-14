@@ -1,4 +1,4 @@
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from 'redux/auth/selecors';
@@ -9,9 +9,9 @@ function PrivateRoute({ children, redirectTo = '/' }) {
   return isLoggedIn ? children : <Navigate to={redirectTo} />;
 }
 
-PrivateRoute.prototype = {
-  children: propTypes.element,
-  redirectTo: propTypes.string,
+PrivateRoute.propTypes = {
+  children: PropTypes.element,
+  redirectTo: PropTypes.string,
 };
 
 export default PrivateRoute;

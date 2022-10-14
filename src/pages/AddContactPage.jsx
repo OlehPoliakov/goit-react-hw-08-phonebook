@@ -1,5 +1,5 @@
 import ContactForm from 'components/ContactForm';
-import useCreateNewContact from 'hooks/createNewContact';
+import useCreateNewContact from 'hooks/useCreateNewContact';
 import { contactSchema } from 'utils/validationSchema';
 
 function AddContactPage() {

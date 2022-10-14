@@ -8,9 +8,11 @@ export default function Navigation() {
 
   return (
     <nav className={styles.nav}>
-      <NavLink className={styles.link} to="/home">
-        Home
-      </NavLink>
+      {isLoggedIn && (
+        <NavLink className={styles.link} to="/home">
+          Home
+        </NavLink>
+      )}
       {isLoggedIn && (
         <NavLink className={styles.link} to="/contacts">
           Contacts

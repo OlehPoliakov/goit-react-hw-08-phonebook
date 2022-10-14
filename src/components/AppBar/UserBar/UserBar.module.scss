@@ -1,0 +1,67 @@
+@import 'utils/variables.module.scss';
+
+.Wrapper {
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.GroupWrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.UserIcon {
+  background-color: $accent-text-color;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.TextWrapper {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.Text {
+  font-weight: 700;
+  margin: 0;
+}
+
+.UserName {
+  color: $accent-text-color;
+}
+
+.UserEmail {
+  margin: 0;
+}
+
+// .UserEmail {
+//   font-size: 14px;
+//   color: #cccccc;
+// }
+
+.Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  padding: 0 20px 0 20px;
+  background-color: $second-bg-color;
+  color: $second-text-color;
+  font-family: inherit;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color $transition-duration;
+
+  &:hover,
+  &:focus {
+    background-color: $accent-bg-color;
+    color: $main-bg-color;
+  }
+  @media screen and (max-width: 1439px) {
+    width: 100%;
+  }
+}

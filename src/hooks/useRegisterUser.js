@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { registerUser } from 'redux/auth/operations';
 
-function useRegistrUser() {
+function useRegisterUser() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -14,4 +14,4 @@ function useRegistrUser() {
   return { onSubmitForm };
 }
 
-export default useRegistrUser;
+export default useRegisterUser;

@@ -1,20 +1,20 @@
+import { Box } from 'utils/Box';
 import Filter from 'components/Filter';
 import ContactList from 'components/ContactList';
 import AddContactButton from 'components/AddContactButton';
 import Message from 'components/Message';
 import { useGetContactsQuery } from 'redux/contacts/api';
-import styles from './ContactsPage.module.scss';
 
 export default function ContactsPage() {
   const { data: contacts } = useGetContactsQuery();
 
   return (
-    <div className={styles.wrapper}>
+    <Box pt="30px" textAlign="center">
       <AddContactButton text="Add new contact" />
-      <div className={styles.Formwrapper}>
+      <Box borderRadius={2}>
         <Filter />
-      </div>
+      </Box>
       {contacts && contacts.length > 0 ? <ContactList /> : <Message />}
-    </div>
+    </Box>
   );
 }

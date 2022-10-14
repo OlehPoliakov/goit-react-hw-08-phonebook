@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Loader from 'components/Loader';
 import { ReactComponent as DeleteContact } from 'img/icons/delete.svg';
 import styles from './DeleteContact.module.scss';
-import useDeletingContact from 'hooks/deletingContact';
+import useDeletingContact from 'hooks/useDeletingContact';
 
 export default function DeletingContact({ id, name }) {
   const { isDeleting, deleteSelectedContact } = useDeletingContact(id, name);

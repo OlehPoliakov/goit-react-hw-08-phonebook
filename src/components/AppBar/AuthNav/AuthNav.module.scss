@@ -1,8 +1,18 @@
 @import 'utils/variables.module.scss';
 
-.link {
+.List {
+  display: flex;
+}
+
+.Item {
+  margin-right: 15px;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.Link {
   display: inline-block;
-  padding: 20px 0;
   font-weight: 700;
   color: $main-text-color;
   font-size: 20px;
@@ -15,8 +25,4 @@
   &:focus {
     color: $accent-text-color;
   }
-}
-
-.link:not(:last-child) {
-  margin-right: 30px;
 }

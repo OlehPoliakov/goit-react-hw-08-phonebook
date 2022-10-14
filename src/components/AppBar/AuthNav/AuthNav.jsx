@@ -1,13 +1,20 @@
 import { NavLink } from 'react-router-dom';
+import styles from './AuthNav.module.scss';
+//
+// import LoginForm from 'components/LoginForm';
 
 function AuthNav() {
   return (
-    <ul>
-      <li>
-        <NavLink to="/register">Register</NavLink>
+    <ul className={styles.List}>
+      <li className={styles.Item}>
+        <NavLink className={styles.Link} to="/register">
+          Sign up
+        </NavLink>
       </li>
-      <li>
-        <NavLink to="/login">Login</NavLink>
+      <li className={styles.Item}>
+        <NavLink className={styles.Link} to="/login">
+          Login
+        </NavLink>
       </li>
     </ul>
   );

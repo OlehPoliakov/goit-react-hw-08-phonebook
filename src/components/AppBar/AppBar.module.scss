@@ -1,10 +1,13 @@
 .header {
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 8px 15px;
   border-bottom: 4px solid;
   border-image: linear-gradient(to right, #0082d1, #ffd100, #ffd100, #0082d1)
     47% 0%;
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.5);
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }

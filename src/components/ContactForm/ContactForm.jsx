@@ -2,26 +2,25 @@ import Button from 'react-bootstrap/Button';
 import { BsFillPersonPlusFill } from 'react-icons/bs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import Container from 'components/Container';
 import GoBack from 'components/GoBack';
 import styles from './ContactForm.module.scss';
 
 export default function ContactForm({
-  title,
   initialValues,
   onSubmitForm,
   validationSchema,
   buttonLabel,
 }) {
   return (
-    <>
+    <Container>
       <GoBack text="Contact list" path="/contacts" />
-      <p>{title}</p>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmitForm}
       >
-        {({ values, handleChange, handleSubmit, isSubmitting }) => (
+        {({ name, number, handleChange, handleSubmit, isSubmitting }) => (
           <Form className={styles.form} onSubmit={handleSubmit}>
             <label className={styles.Label}>
               <span className={styles.Title}>Name</span>
@@ -31,8 +30,7 @@ export default function ContactForm({
                 name="name"
                 onChange={handleChange}
                 placeholder="Volodymyr Zelenskyy"
-                title="Name may contain only letters, apostrophe, dash and spaces."
-                value={values.name}
+                value={name}
                 required
               />
               <ErrorMessage
@@ -48,8 +46,7 @@ export default function ContactForm({
                 name="number"
                 onChange={handleChange}
                 placeholder="937-99-92"
-                title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-                value={values.number}
+                value={number}
                 required
               />
               <ErrorMessage
@@ -62,13 +59,12 @@ export default function ContactForm({
               type="submit"
               disabled={isSubmitting}
             >
-              {isSubmitting ? '...' : buttonLabel}
               <BsFillPersonPlusFill size={20} />
-              <p>Add contact</p>
+              {isSubmitting ? '...' : buttonLabel}
             </Button>
           </Form>
         )}
       </Formik>
-    </>
+    </Container>
   );
 }

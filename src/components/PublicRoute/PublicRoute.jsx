@@ -1,6 +1,6 @@
-import propTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { getIsLoggedIn } from 'redux/auth/selecors';
 
 function PublicRoute({ children, restricted = false, redirectTo = '/' }) {
@@ -10,10 +10,10 @@ function PublicRoute({ children, restricted = false, redirectTo = '/' }) {
   return shouldRedirect ? <Navigate to={redirectTo} /> : children;
 }
 
-PublicRoute.prototype = {
-  children: propTypes.element,
-  restricted: propTypes.bool,
-  redirectTo: propTypes.string,
+PublicRoute.propTypes = {
+  children: PropTypes.element,
+  restricted: PropTypes.bool,
+  redirectTo: PropTypes.string,
 };
 
 export default PublicRoute;
