@@ -25,7 +25,7 @@ export default function DeletingContact({ id, name }) {
   );
 }
 
-DeletingContact.prototype = {
+DeletingContact.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 };

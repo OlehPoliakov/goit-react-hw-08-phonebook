@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import { BsFillPersonPlusFill } from 'react-icons/bs';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -68,3 +69,17 @@ export default function ContactForm({
     </Container>
   );
 }
+
+ContactForm.propTypes = {
+  title: PropTypes.string,
+  initialValues: PropTypes.shape({
+    name: PropTypes.string,
+    number: PropTypes.string,
+  }),
+  onSubmitForm: PropTypes.func,
+  validationSchema: PropTypes.shape({
+    name: PropTypes.func,
+    number: PropTypes.func,
+  }),
+  buttonLabel: PropTypes.string,
+};
