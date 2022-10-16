@@ -8,7 +8,8 @@ function useRefreshCurrentUser() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCurrentUser());
+    if (dispatch(getCurrentUser())) return;
+    // dispatch(getCurrentUser());
   }, [dispatch]);
 
   return { isRefreshing };

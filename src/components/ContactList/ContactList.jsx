@@ -13,9 +13,9 @@ const ContactList = () => {
   const { filteredContactList } = useFiltredContacts();
 
   useEffect(() => {
-    refetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (refetch()) return;
+    // refetch();
+  }, [refetch]);
 
   return (
     <Container>
