@@ -8,7 +8,7 @@ function useLoginUser() {
 
   const onSubmitForm = ({ email, password }) => {
     dispatch(loginUser({ email, password }));
-    navigate('/contacts');
+    navigate('/');
   };
 
   return { onSubmitForm };

@@ -1,11 +1,16 @@
-// // import Container from 'components/Container';
-import RegisterForm from 'components/RegisterForm';
+import UserForm from 'components/UserForm';
+import userRegisterUser from 'hooks/useRegisterUser';
+import { userRegisterSchema } from 'utils/validationSchema';
 
 function RegisterPage() {
+  const { onSubmitForm } = userRegisterUser();
   return (
-    // <Container>
-    <RegisterForm />
-    // </Container>
+    <UserForm
+      onSubmitForm={onSubmitForm}
+      validationSchema={userRegisterSchema}
+      initialValues={{ name: '', email: '', password: '' }}
+      formType="sign up"
+    />
   );
 }
 
