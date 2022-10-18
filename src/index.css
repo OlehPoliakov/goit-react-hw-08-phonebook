@@ -9,6 +9,8 @@ body {
   font-family: 'Roboto', sans-serif;
   line-height: 1.5;
   color: #212121;
+  background-repeat: no-repeat;
+  background-size: cover;
 
   background-image: linear-gradient(
       rgba(255, 249, 231, 0.7),
