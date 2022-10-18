@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { variants } from 'utils/motionVar';
 import { ReactComponent as AddContact } from 'img/icons/contact.svg';
 import DeletingContact from 'components/DeleteContact';
+// import ChangeContact from 'components/ChangeContact';
 import styles from './ContactItem.module.scss';
 
 const ContactItem = ({ id, name, number }) => {
@@ -20,6 +21,7 @@ const ContactItem = ({ id, name, number }) => {
         <b>{name}</b>
         <em>{number}</em>
       </p>
+      {/* <ChangeContact /> */}
       <DeletingContact id={id} name={name} />
     </motion.li>
   );
